@@ -1,6 +1,6 @@
 <div align='center'>
 
-<h1>THIS IS A simple calculator USING PYTHON</h1>
+<h1>THIS IS A simple bank management system USING PYTHON</h1>
 
 
 </div>
