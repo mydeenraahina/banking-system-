@@ -1,6 +1,6 @@
 <div align='center'>
 
-<h1>THIS IS A simple bank system USING PYTHON</h1>
+<h1>THIS IS A simple banking system USING PYTHON</h1>
 
 
 </div>
@@ -13,4 +13,4 @@
 
 MYDEENRAAHINA - - mydeenraahina862@gmail.com
 
-Project Link: [https://github.com/mydeenraahina/bank-system-](https://github.com/mydeenraahina/bank-system-/tree/main)
+Project Link: [https://github.com/mydeenraahina/banking-system-](https://github.com/mydeenraahina/banking-system-/tree/main)
