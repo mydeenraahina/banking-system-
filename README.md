@@ -57,4 +57,4 @@ Notes
 The initial balance is set to $100.
 
 This is a basic example and does not include advanced security features or real-world banking functionalities.
-Contributing
+
