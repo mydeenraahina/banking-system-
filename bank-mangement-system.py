@@ -76,7 +76,8 @@ def account_details_validation():
                 break
         else:
                 print(f"Enter a valid input..")
-    account_obj=BankingSystem(account_no,account_holder_name)
+    return account_no,account_holder_name
+    
 def main_block():
     menu_block()
     while True:
@@ -86,16 +87,19 @@ def main_block():
             obj.account_creation()
             break
         elif getting_input=="2":
-            account_details_validation()
-            account_obj.deposit()
+            account_no,account_holder_name=account_details_validation()
+            deposit_obj=BankingSystem(account_no,account_holder_name)
+            deposit_obj.deposit()
             break
         elif getting_input=="3":
-            account_details_validation()
-            account_obj.withdraw()
+            account_no,account_holder_name=account_details_validation()
+            withdrawal_obj=BankingSystem(account_no,account_holder_name)
+            withdrawal_obj.withdraw()
             break
         elif getting_input=="4":
-            account_details_validation()
-            account_obj.account_balance()
+            account_no,account_holder_name=account_details_validation()
+            balance_obj=BankingSystem(account_no,account_holder_name)
+            balance_obj.account_balance()
             break
         elif getting_input=="5":
             print(f"you are going to exit!..")
@@ -104,17 +108,17 @@ def main_block():
             print(f"Enter a valid input")
             
 def continue_choice():
-    getting_choice=input(f"Do you want to continue baking....[yes/no] :").casefold()
-    if getting_choice=="yes":
-        main_block()
-    elif getting_choice=="no":
-        print(f"you are going to exit!..")
-        exit()
-    else:
-        print(f"Enter a valid input")
-        continue_choice()
-        
-if __name__=="__main__":
-    main_block()
-    continue_choice()
+    while True:
+        getting_choice=input(f"Do you want to continue baking....[yes/no] :").casefold()
+        if getting_choice=="yes":
+            main_block()
+            break
+        elif getting_choice=="no":
+            print(f"you are going to exit!..")
+            exit()
+        else:
+            print(f"Enter a valid input")
+            
+main_block()#calling main_block
+continue_choice()#calling continue_choice
                     
