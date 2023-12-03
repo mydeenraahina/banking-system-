@@ -1,65 +1,120 @@
-print(f"...WELCOME TO BOI BANK !!!...")
-try:
-    customer_account_no=int(input("Enter your account_no "))
-    if customer_account_no==0 or customer_account_no<0:
-        print(f"enter a valid account number")
-    else:
-        
-        customer_name=str(input("enter your name :"))
-        if customer_name.isalpha() or customer_account_no<0:
-            print(f"[DEPOSITE] [WITHDRAW]")
-            print(f"click 1 to deposite \n click 2 for withdraw ")
-
-            class Customer_Details:
+print("Hey! customer..")
+class BankingSystem:
                 initial_balance=100
-                def __init__(self,account_no,account_holder_name):
-                    self.account_no=account_no
-                    self.account_holder_name=account_holder_name
-                    print(f"ACCOUNT NO: {self.account_no}")
-                    print(f"ACCOUNT HOLDER NAME: {self.account_holder_name}")
-
+                def __init__(self,account_no=None,account_holder_name=None):
+                   if account_no!=None and account_holder_name!=None:
+                       self.account_no=account_no
+                       self.account_holder_name=account_holder_name
+                       print(f"ACCOUNT NO: {self.account_no}")
+                       print(f"ACCOUNT HOLDER NAME: {self.account_holder_name}")
+                def account_creation(self):
+                    while True:
+                        getting_acc_no=input("Enter [11-didgit] Number to create you new account_no:")
+                        if getting_acc_no.isdigit() and len(getting_acc_no)==11:
+                            break
+                        else:
+                           print(f"Enter a valid input..")
+                    while True:
+                        getting_acc_name=input("Enter Your Name :")
+                        if getting_acc_name.isalpha():
+                            break
+                        else:
+                             print(f"Enter a valid input..")
+                    while True:
+                        try:
+                            getting_initial_balance=int(input("Enter initial balance here :"))
+                            BankingSystem.initial_balance=getting_initial_balance#inital amount changed
+                            break
+                        except ValueError as e1:
+                            print(f"Enter a valid input..")
+                            print(e1)
+            
+                    print(f"Account_No={getting_acc_no}\nAccount holder={getting_acc_name}\nAccount created successfully!")
                     
-            class Bank_Account(Customer_Details):       
                 def deposit(self):
-                    deposit_amount=float(input("Enter amount  to deposit "))
-                    if deposit_amount==0 or deposit_amount<0:
-                        print(f"Enter a valid amount deposit")
-                    else:
-                        print(f"Account balance =: {obj.initial_balance}")
-                        print(f"deposited amount :{deposit_amount}")
-                        obj.initial_balance+=deposit_amount
-                        print(f"current_balance ={obj.initial_balance}")
-                        print(f"Thank u.. visit again...")
-                    
+                    while True:
+                        deposit_amount=float(input("Enter amount  to deposit "))
+                        if deposit_amount==0 or deposit_amount<0:
+                            print(f"Enter a valid amount deposit")
+                        else:
+                            print(f"Account balance =: {self.initial_balance}")
+                            print(f"deposited amount :{deposit_amount}")
+                            self.initial_balance+=deposit_amount
+                            print(f"current_balance ={self.initial_balance}")
+                            print(f"Thank u.. visit again...")
+                            break
+                            
                 def withdraw(self):
                     withdraw_amount=float(input("Enter amount for withdraw"))
                     if withdraw_amount==0 or withdraw_amount<0:
                         print(f"Enter a valid amount for withdraw")
                     else:
-                        
-                        if int(withdraw_amount)>obj.initial_balance:
+                        if int(withdraw_amount)>self.initial_balance:
                             print(f"Sorry! You have not enough money for withdrawal")
                         else:
-                            print(f"Account balance =: {obj.initial_balance}")
+                            print(f"Account balance =: {self.initial_balance}")
                             print(f"Total Amount receicevd: {withdraw_amount}")
-                            obj.initial_balance-=withdraw_amount
-                            print(f"current_balance ={obj.initial_balance}")
+                            self.initial_balance-=withdraw_amount
+                            print(f"current_balance ={self.initial_balance}")
                             print(f"Thank u.. visit again...")
-                        
-            obj=Bank_Account(customer_account_no,customer_name)
-            while True:
-                getting_input=input("Enter your choice")
-                if getting_input=="1":
-                    obj.deposit()
-                    break
-                elif getting_input=="2":
-                    obj.withdraw()
-                    break
-                else:
-                    print(f"Enter a valid input")
-                    
+                def account_balance(self):
+                    print("Account balance:",BankingSystem.initial_balance)
+def menu_block():
+    print(f"Here are the options available for you..")
+    menu_list=["Menu","1.Create Account","2.Deposite","3.Withdraw","4.Display Balance","5.Exit"]
+    [print(option) for option in menu_list]
+def account_details_validation():
+    while True:
+        account_no=input("Enter your account number..")
+        if account_no.isdigit() and len(account_no)==11:
+                break
         else:
-            print(f"Enter a valid account_name!!!")
-except ValueError:
-    print(f"Enter a valid account_number!!!")
-
+                print(f"Enter a valid input..")
+    while True:
+        account_holder_name=input("Enter account holder name..")
+        if  account_holder_name.isalpha():
+                break
+        else:
+                print(f"Enter a valid input..")
+    account_obj=BankingSystem(account_no,account_holder_name)
+def main_block():
+    menu_block()
+    while True:
+        getting_input=input("Enter your choice from the above options: ")
+        if getting_input=="1":
+            obj=BankingSystem()
+            obj.account_creation()
+            break
+        elif getting_input=="2":
+            account_details_validation()
+            account_obj.deposit()
+            break
+        elif getting_input=="3":
+            account_details_validation()
+            account_obj.withdraw()
+            break
+        elif getting_input=="4":
+            account_details_validation()
+            account_obj.account_balance()
+            break
+        elif getting_input=="5":
+            print(f"you are going to exit!..")
+            exit()
+        else:
+            print(f"Enter a valid input")
+            
+def continue_choice():
+    getting_choice=input(f"Do you want to continue baking....[yes/no] :").casefold()
+    if getting_choice=="yes":
+        main_block()
+    elif getting_choice=="no":
+        print(f"you are going to exit!..")
+        exit()
+    else:
+        print(f"Enter a valid input")
+        continue_choice()
+        
+if __name__=="__main__":
+    main_block()
+    continue_choice()
+                    
